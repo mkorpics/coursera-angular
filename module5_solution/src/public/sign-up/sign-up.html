@@ -1,0 +1,55 @@
+<form name='signUpForm' novalidate>
+    <input type="text" name="firstname" placeholder="First Name"
+        ng-model="signUpCtrl.firstname"
+        required>
+    <span ng-if="(signUpForm.firstname.$error.required) && signUpForm.firstname.$touched">
+        First name is required
+    </span>
+    <br>
+
+    <input type="text" name="lastname" placeholder="Last Name"
+        ng-model="signUpCtrl.lastname"
+        required>
+    <span ng-if="(signUpForm.lastname.$error.required) && signUpForm.lastname.$touched">
+        Last name is required
+    </span>
+    <br>
+
+    <input type="email" name="email" placeholder="Email"
+        ng-model="signUpCtrl.email"
+        required>
+    <span ng-if="signUpForm.email.$invalid && signUpForm.email.$touched">
+        Must be a valid email address: handle@domain format
+    </span>
+    <br>
+
+    <input type="text" name="phone" placeholder="Phone ###-###-####"
+        ng-model="signUpCtrl.phone"
+        pattern="(\d{3})-(\d{3})-(\d{4})"
+        required>
+    <span ng-if="signUpForm.phone.$invalid && signUpForm.phone.$touched">
+        Phone must be in the format ###-###-####.
+    </span>
+    <br>
+
+    <input type="text" name="menuItemShortName" placeholder="Favorite Menu Item (Item Number)"
+        ng-model="signUpCtrl.menuItemShortName"
+        required>
+    <span ng-if="signUpForm.menuItemShortName.$invalid && signUpForm.menuItemShortName.$touched">
+        Menu Item Short Name is required
+    </span>
+    <span ng-if="signUpCtrl.menuItemShortName && signUpCtrl.showInvalidMenuItemMessage">
+        No such menu number exists
+    </span>
+    <br>
+
+    <button
+        ng-disabled="signUpForm.$invalid"
+        ng-click="signUpCtrl.submit()">
+        Submit
+    </button>
+
+    <div ng-if="signUpCtrl.isSaved">
+        Your information has been saved
+    </div>
+</form>
